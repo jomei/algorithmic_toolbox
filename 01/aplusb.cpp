@@ -1,3 +1,7 @@
+
+// Input: two digit numbers
+// Output: sum of these nubers
+
 #include <iostream>
 
 int main() {
