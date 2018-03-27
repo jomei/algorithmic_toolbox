@@ -42,6 +42,10 @@ std::vector<int> buildTable(int m) {
     return table;
 }
 
+
+// надо было воспользоваться периодом Пизано
+// тут же считаются первые m чисел Фиббоначи + еще делится
+// с периодом надо просто складывать числа, пока не получится последовательность {0 ,1}
 long long get_fibonacci_huge_fast(long long n, long long m) {
      std::vector<int> table = buildTable(m);
      return table[n % m];
