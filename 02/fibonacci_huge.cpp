@@ -20,35 +20,37 @@ long long get_fibonacci_huge_naive(long long n, long long m) {
     return current % m;
 }
 
-int fib_fast_step(int n, std::vector<int>& fib) {
-    int size = fib.size();
-    if(size > n) { return fib[n]; }
+int get_pisano_period(long long n, long long m) {
+    int prev = 0;
+    int cur = 1;
+    int len = 0;
+    int next;
 
-    fib.push_back(fib[size - 1] + fib[size - 2]);
-    return fib_fast_step(n, fib); 
-}
-
-int fibonacci_fast(int n) {
-    std::vector<int> fib = {0, 1};
-    return fib_fast_step(n, fib);
-}
-
-std::vector<int> buildTable(int m) {
-    std::vector<int> table = {0, 1};
-    if(m < 3) { return table; }
-    for(int i = 2; i < m; i ++) {
-        table.push_back(fibonacci_fast(i) % i);
+    while(true) {
+        next = (prev + cur) % m;
+        prev = cur;
+        cur = next;
+        ++len;
+        if (prev == 0 && cur == 1) { break; }
     }
-    return table;
+    return len;
 }
 
+long long get_fibonacci_huge(long long n, long long m) {
+    if(n <= 1) { return n; }
+    long long prev = 0;
+    long long cur = 0;
+    long long next;
+    int period = get_pisano_period(n m);
 
-// надо было воспользоваться периодом Пизано
-// тут же считаются первые m чисел Фиббоначи + еще делится
-// с периодом надо просто складывать числа, пока не получится последовательность {0 ,1}
-long long get_fibonacci_huge_fast(long long n, long long m) {
-     std::vector<int> table = buildTable(m);
-     return table[n % m];
+    for(int i = 0; i < n % m; ++i) {
+        next = (prev + cur) % m;
+
+        prev = cur;
+        cur = next;
+    }
+
+    return prev;
 }
 
 
