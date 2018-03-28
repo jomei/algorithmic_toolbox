@@ -20,7 +20,7 @@ long long get_fibonacci_huge_naive(long long n, long long m) {
     return current % m;
 }
 
-int get_pisano_period(long long n, long long m) {
+int get_pisano_period(long long m) {
     int prev = 0;
     int cur = 1;
     int len = 0;
@@ -41,7 +41,7 @@ long long get_fibonacci_huge(long long n, long long m) {
     long long prev = 0;
     long long cur = 1;
     long long next;
-    int period = get_pisano_period(n, m);
+    int period = get_pisano_period(m);
 
     for(int i = 0; i < n % m; ++i) {
         next = (prev + cur) % m;
