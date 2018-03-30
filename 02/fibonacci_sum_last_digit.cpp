@@ -43,7 +43,7 @@ int get_pisano_period(long long m) {
 int fibonacci_sum(long long n) {
     long long prev = 0;
     long long cur = 1;
-    long long sum = 1;
+    long long sum = 0;
     long long next;
 
     int period = get_pisano_period(10);
@@ -55,12 +55,12 @@ int fibonacci_sum(long long n) {
         cur = next;
     }
 
-    return sum % 10 - 1;
+    return sum % 10 ;
 }
 
 int main() {
     long long n = 0;
     std::cin >> n;
-    std::cout << fibonacci_sum_naive(n) << std::endl;
+    // std::cout << fibonacci_sum_naive(n) << std::endl;
     std::cout << fibonacci_sum(n) << std::endl;
 }
