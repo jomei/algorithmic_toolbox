@@ -55,12 +55,12 @@ int fibonacci_sum(long long n) {
         cur = next;
     }
 
-    return sum % 10 ;
+    return sum % 10;
 }
 
 int main() {
     long long n = 0;
     std::cin >> n;
-    // std::cout << fibonacci_sum_naive(n) << std::endl;
+    std::cout << fibonacci_sum_naive(n) << std::endl;
     std::cout << fibonacci_sum(n) << std::endl;
 }
