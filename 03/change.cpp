@@ -8,6 +8,7 @@ int get_fraction(int m) {
 	for(int i = 0; i < 3; ++i) {
 		if(fractions[i] < m) { return fractions[i]; }
 	}
+	return 0;
 }
 
 
