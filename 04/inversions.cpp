@@ -3,27 +3,37 @@
 
 using std::vector;
 
-long long get_number_of_inversions(vector<int> &a, vector<int> &b, size_t left, size_t right) {
-  std::cout<<"("<<left<<","<<right << ")\n";
-  long long number_of_inversions = 0;
-  if (right - left == 0) {
-    b.push_back(a[left]);
-    return number_of_inversions;
-  }
-  
-  if (right <= left + 1) {
-    if(a[left] > a[right]) {
-    std::cout<< "left " << left << ": " << a[left] <<"\n";
-    std::cout<< "right " << right << ": " << a[right] <<"\n";
-      ++number_of_inversions;
-      b.push_back(a[right]);
-      b.push_back(a[left]);
+void merge(vector<int> &result, vector<int> &left, vector<int> &right) {
+  int l, r;
+  while(!left.empty() || !right.empty()) {
+    l = left[0];
+    r = right[0];
+    std::cout<< "l: " << l << " r:" << r <<std::endl;
+    if(l <= r) {
+      result.push_back(l);
+      left.erase(left.begin());
     } else {
-      b.push_back(a[left]);
-      b.push_back(a[right]);
+      result.push_back(r);
+      right.erase(right.begin());
     }
-    std::cout<<"======\n";
-    return number_of_inversions;
+  }
+
+  for(int i = 0; i < left.size(); ++i) {
+    result.push_back(left[i]);
+  }
+
+
+  for(int i = 0; i < right.size(); ++i) {
+    result.push_back(right[i]);
+  }
+  std::cout << "---\n"; 
+}
+
+long long get_number_of_inversions(vector<int> &a, vector<int> &b, size_t left, size_t right) {
+  long long number_of_inversions = 0;
+  if(left == right) {
+     b.push_back(a[right]);
+     return number_of_inversions;
   }
   
   size_t ave = left + (right - left) / 2;
@@ -33,29 +43,7 @@ long long get_number_of_inversions(vector<int> &a, vector<int> &b, size_t left, 
   
   number_of_inversions += get_number_of_inversions(a, l_vec, left, ave);
   number_of_inversions += get_number_of_inversions(a, r_vec, ave + 1, right);
-  std::cout<< "left vector:" <<"\n";
-  for(int i = 0; i < l_vec.size(); ++i){
-    std::cout<<l_vec[i]<<" ";
-  }
-  std::cout<<"\nright vector:\n";
-    for(int i = 0; i < l_vec.size(); ++i){
-    std::cout<<r_vec[i]<<" ";
-  }
-  std::cout<<"\n"
-  while(!l_vec.empty() && !r_vec.empty()) {
-      if(l_vec.back() > r_vec.back()) {
-        std::cout<<"!!\n";
-        std::cout<< "left " << left << ": " << a[left] <<"\n";
-        std::cout<< "right " << right << ": " << a[right] <<"\n";
-        b.push_back(l_vec.back());
-        l_vec.pop_back();
-        ++number_of_inversions;
-      } else {
-        b.push_back(r_vec.back());
-        r_vec.pop_back();
-      }
-  }
-
+  merge(b, l_vec, r_vec);
   return number_of_inversions;
 }
 
@@ -66,6 +54,11 @@ int main() {
   for (size_t i = 0; i < a.size(); i++) {
     std::cin >> a[i];
   }
-  vector<int> b(a.size());
+  vector<int> b;
   std::cout << get_number_of_inversions(a, b, 0, a.size()) << '\n';
+
+    std::cout<<"\nresult vector:\n";
+  for(int i = 0; i < b.size(); ++i){
+    std::cout<<b[i]<<" ";
+  }
 }
