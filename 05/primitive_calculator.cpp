@@ -21,18 +21,30 @@ vector<int> optimal_sequence(int n) {
         std::vector<int> tmp = storage.find(count)->second;
         tmp.push_back(p1);
         storage[p1] = tmp;
+      } else {
+        std::vector<int> tmp = storage.find(count)->second;
+        tmp.push_back(p1);
+        if(tmp.size() < storage.find(p1)->second.size()) {storage[p1] = tmp;}
       }
       if(storage.count(x2) == 0) {
         std::vector<int> tmp = storage.find(count)->second;
         tmp.push_back(x2);
         storage[x2] = tmp;
+      }else {
+        std::vector<int> tmp = storage.find(count)->second;
+        tmp.push_back(x2);
+        if(tmp.size() < storage.find(x2)->second.size()) {storage[x2] = tmp;}
       }
       if(storage.count(x3) == 0) {
         std::vector<int> tmp = storage.find(count)->second;
         tmp.push_back(x3);
         storage[x3] = tmp;
+      }else {
+        std::vector<int> tmp = storage.find(count)->second;
+        tmp.push_back(x3);
+        if(tmp.size() < storage.find(x3)->second.size()) {storage[x3] = tmp;}
       }
-
+    ++count;
   }
   return storage.find(n)->second;
 }
