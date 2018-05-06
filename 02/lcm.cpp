@@ -8,7 +8,7 @@ long long lcm_naive(int a, int b) {
   return (long long) a * b;
 }
 
-int gcd_fast(int a, int b) {
+long long gcd_fast(long a, long b) {
   int r = a % b;
   if(r == 0) { return b; }
   return gcd_fast(b, r);

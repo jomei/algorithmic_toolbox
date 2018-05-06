@@ -61,6 +61,6 @@ int fibonacci_sum(long long n) {
 int main() {
     long long n = 0;
     std::cin >> n;
-    std::cout << fibonacci_sum_naive(n) << std::endl;
+    // std::cout << fibonacci_sum_naive(n) << std::endl;
     std::cout << fibonacci_sum(n) << std::endl;
 }

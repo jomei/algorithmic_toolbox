@@ -81,6 +81,6 @@ int get_fibonacci_partial_sum(long long from, long long to) {
 int main() {
     long long from, to;
     std::cin >> from >> to;
-    std::cout << get_fibonacci_partial_sum_naive(from, to) << '\n';
+    // std::cout << get_fibonacci_partial_sum_naive(from, to) << '\n';
     std::cout << get_fibonacci_partial_sum(from, to) << std::endl;
 }

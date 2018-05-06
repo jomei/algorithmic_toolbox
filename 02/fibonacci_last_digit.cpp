@@ -20,37 +20,19 @@ int get_fibonacci_last_digit_naive(int n) {
     return current % 10;
 }
 
-int get_pisano_period(long long m) {
-    int prev = 0;
-    int cur = 1;
-    int len = 0;
-    int next;
-
-    while(true) {
-        next = (prev + cur) % m;
-        prev = cur;
-        cur = next;
-        ++len;
-        if (prev == 0 && cur == 1) { break; }
-    }
-    return len;
-}
-
 int get_fibonacci_last_digit(int n) {
-    long long prev = 0;
-    long long cur = 1;
-    long long next;
-    int period = get_pisano_period(10);
+    if (n <= 1) { return n; }
 
-    int sum = 0;
+    int prev = 0;
+    int curr = 1;
 
-    for(int i = 1; i < n % period; ++i) {
-        next = (prev + cur) % 10;
-        prev = cur;
-        cur = next;
+    for (int i = 0; i < n - 1; ++i) {
+        int tmp_previous = prev;
+        prev = curr;
+        curr = (tmp_previous + curr) % 10;
     }
 
-    return cur;
+    return curr % 10;
 }
 
 

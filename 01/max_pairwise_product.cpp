@@ -8,19 +8,20 @@ using std::vector;
 using std::cin;
 using std::cout;
 
-int productFast(vector<int>& input) {
-	int i1 = 0;
-	int i2 = 1;
+long long productFast(vector<int>& input) {
+  int n = input.size();
 
-	for (int i = 1; i < input.size(); i++) {
-		if(input[i1] < input[i]) { i1 = i; }
-	}
+  int i1 = -1;
+  for (int i = 0; i < n; ++i)
+    if ((i1 == -1) || (input[i] > input[i1]))
+      i1 = i;
 
-	for (int i = 2; i < input.size(); i++) {
-		if((input[i2] < input[i]) && (i != i1)) { i2 = i; }
-	}
+  int i2 = -1;
+  for (int j = 0; j < n; ++j)
+    if ((j != i1) && ((i2 == -1) || (input[j] > input[i2])))
+      i2 = j;
 
-	return input[i1] * input[i2];
+  return ((long long)(input[i1])) * input[i2];
 }
 
 int productNaive(vector<int>& input) {
@@ -46,7 +47,7 @@ int main() {
 		cin >> input[i];
 	}
 
-	int result = productFast(input);
+	long long result = productFast(input);
 
 	cout << result << "\n";
 
