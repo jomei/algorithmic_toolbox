@@ -43,7 +43,7 @@ long long get_fibonacci_huge(long long n, long long m) {
     long long next;
     int period = get_pisano_period(m);
 
-    for(int i = 0; i < n % m; ++i) {
+    for(int i = 0; i < n % period; ++i) {
         next = (prev + cur) % m;
 
         prev = cur;
@@ -57,5 +57,5 @@ long long get_fibonacci_huge(long long n, long long m) {
 int main() {
     long long n, m;
     std::cin >> n >> m;
-    std::cout << get_fibonacci_huge_naive(n, m) << std::endl;
+    std::cout << get_fibonacci_huge(n, m) << std::endl;
 }

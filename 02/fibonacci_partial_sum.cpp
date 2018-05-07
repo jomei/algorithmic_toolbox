@@ -21,11 +21,11 @@ long long get_fibonacci_partial_sum_naive(long long from, long long to) {
     return sum % 10;
 }
 
-int get_pisano_period(long long m) {
-    int prev = 0;
-    int cur = 1;
-    int len = 0;
-    int next;
+long long get_pisano_period(long long m) {
+    long long prev = 0;
+    long long cur = 1;
+    long long len = 0;
+    long long next;
 
     while(true) {
         next = (prev + cur) % m;
@@ -37,15 +37,15 @@ int get_pisano_period(long long m) {
     return len;
 }
 
-int get_fibonacci_last_digit(int n) {
+long long get_fibonacci_last_digit(long long n) {
     long long prev = 0;
     long long cur = 1;
     long long next;
-    int period = get_pisano_period(10);
+    long long period = get_pisano_period(10);
 
-    int sum = 0;
+    long long sum = 0;
 
-    for(int i = 1; i < n % period; ++i) {
+    for(long long i = 1; i < n % period; ++i) {
         next = (prev + cur) % 10;
         prev = cur;
         cur = next;
@@ -54,14 +54,14 @@ int get_fibonacci_last_digit(int n) {
     return cur;
 }
 
-int fibonacci_sum(long long n, int m) {
+long long fibonacci_sum(long long n, long long m) {
     long long period = get_pisano_period(m);
     
-    int previous = 0;
-    int current  = 1;
+    long long previous = 0;
+    long long current  = 1;
     long long next;
 
-    for (int i = 1; i < (n + 2) % period; ++i) {
+    for (long long i = 1; i < (n + 2) % period; ++i) {
         next = (previous + current) % m;
         previous = current;
         current = next;
@@ -70,7 +70,7 @@ int fibonacci_sum(long long n, int m) {
     return current - 1;
 }
 
-int get_fibonacci_partial_sum(long long from, long long to) {
+long long get_fibonacci_partial_sum(long long from, long long to) {
     if(from == to) {
         get_fibonacci_last_digit(to);  
     }

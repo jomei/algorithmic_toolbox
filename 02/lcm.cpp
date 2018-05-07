@@ -14,7 +14,7 @@ long long gcd_fast(long a, long b) {
   return gcd_fast(b, r);
 }
 
-long long lcm_fast(int a, int b) {
+long long lcm_fast(long a, long b) {
     return a * b / gcd_fast(a, b);
 }
 
